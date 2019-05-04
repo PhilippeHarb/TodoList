@@ -87,7 +87,7 @@ namespace Take_2
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (TaskList.SelectedItems.Count > 0)
+            if (TaskList.SelectedItems.Count == 1)
             {
                 DialogResult result = MessageBox.Show("Are you sure ? ", "Removing Selected Item.", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
@@ -107,12 +107,15 @@ namespace Take_2
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            int index = TaskList.FocusedItem.Index;
-            string s = model.elements[index];
-            editForm form = new editForm(this, s,index);
-            form.MaximizeBox = false;
-            form.MinimizeBox = false;
-            form.ShowDialog();
+            if (TaskList.SelectedIndices.Count == 1)
+            {
+                int index = TaskList.FocusedItem.Index;
+                string s = model.elements[index];
+                editForm form = new editForm(this, s, index);
+                form.MaximizeBox = false;
+                form.MinimizeBox = false;
+                form.ShowDialog();
+            }
         }
     }
 }
